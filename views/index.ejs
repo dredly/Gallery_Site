@@ -2,10 +2,7 @@
 
 <h1>INDEX PAGE</h1>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod delectus alias atque sunt asperiores soluta ad
-    explicabo error. Suscipit repellendus expedita ad facilis dolore. Voluptatum minima ipsa accusantium soluta ratione.
-    Cupiditate nostrum natus optio at, a deserunt aliquid ab et, laboriosam repudiandae iste reiciendis laborum culpa,
-    saepe amet architecto. Temporibus minima possimus consectetur nam, delectus praesentium illo voluptate labore
-    doloremque.
-    Voluptate, earum tempora esse enim recusandae officia amet? Pariatur necessitatibus quod vel quisquam nulla laborum
-    est enim odit culpa officiis, assumenda illo deleniti iste cumque perferendis commodi porro maiores. Rem.</p>
+<% for (let artpiece of artpieces) { %>
+<h2><%= artpiece.title %> </h2>
+<p><%= artpiece.description %> </p>
+<% } %>
