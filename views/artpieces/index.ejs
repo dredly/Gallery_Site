@@ -1,8 +1,10 @@
 <%- layout('layouts/base') %>
 
 <h1>INDEX PAGE</h1>
-
+<a href="/gallery/new">Upload new</a>
 <% for (let artpiece of artpieces) { %>
-<h2><%= artpiece.title %> </h2>
+<a href="/gallery/<%= artpiece._id %> ">
+    <h2><%= artpiece.title %> </h2>
+</a>
 <p><%= artpiece.description %> </p>
 <% } %>

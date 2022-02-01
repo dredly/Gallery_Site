@@ -1,0 +1,15 @@
+<%- layout('layouts/base') %>
+
+<h1><%= artpiece.title %></h1>
+<p><%= artpiece.filename %> </p>
+<p><%= artpiece.description %></p>
+<h2>Tags</h2>
+<ul>
+    <% for (let tag of artpiece.tags) { %>
+    <li><%= tag %> </li>
+    <% } %>
+</ul>
+<form action="/gallery/<%= artpiece._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+</form>
+<a href="/gallery">Back to gallery</a>
