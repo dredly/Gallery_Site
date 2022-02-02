@@ -9,6 +9,7 @@
     <li><%= tag %> </li>
     <% } %>
 </ul>
+<a href="/gallery/<%= artpiece._id %>/edit">Edit</a>
 <form action="/gallery/<%= artpiece._id %>?_method=DELETE" method="POST">
     <button type="submit">Delete</button>
 </form>

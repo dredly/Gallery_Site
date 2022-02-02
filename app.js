@@ -3,6 +3,7 @@ const path = require('path');
 const ejsMate = require('ejs-mate');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 const Artpiece = require('./models/artpiece');
 
 mongoose.connect('mongodb://localhost:27017/gallery');
@@ -21,6 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/static'));
+app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
 
 app.get('/', (req, res) => {
@@ -49,8 +51,26 @@ app.post('/gallery', async (req, res) => {
     res.redirect(`/gallery/${artpiece._id}`);
 })
 
+app.get('/gallery/:id/edit', async (req, res) => {
+    const artpiece = await Artpiece.findById(req.params.id);
+    const tagsString = artpiece.tags.join(', ');
+    res.render('artpieces/edit', { artpiece, tagsString });
+})
+
+app.put('/gallery/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, filename, description } = req.body;
+    const tags = req.body.tags.split(',');
+    const updatedArtpiece = await Artpiece.findByIdAndUpdate(id, {
+        title, filename, description, tags
+    }, { new: true });
+    console.log(updatedArtpiece);
+    res.redirect(`/gallery/${updatedArtpiece._id}`);
+})
+
 app.delete('/gallery/:id', async (req, res) => {
-    res.send("SO CALLED DELETING");
+    await Artpiece.findByIdAndDelete(req.params.id);
+    res.redirect('/gallery');
 })
 
 app.listen(3000, '0.0.0.0', () => {
