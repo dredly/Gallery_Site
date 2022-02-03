@@ -1,11 +1,11 @@
 <%- layout('layouts/base') %>
 
 <h1>Add new artwork</h1>
-<form action="/gallery" method="POST">
+<form action="/gallery" method="POST" enctype="multipart/form-data">
     <label for="title">Title</label>
     <input type="text" id="title" name="title">
-    <label for="filename">Filename (PLACEHOLDER)</label>
-    <input type="text" id="filename" name="filename">
+    <label for="filename">Upload an image file</label>
+    <input type="file" id="filename" name="filename">
     <label for="description">Description</label>
     <textarea name="description" id="description" cols="30" rows="10"></textarea>
     <label for="tags">Tags - please enter separated by commas</label>

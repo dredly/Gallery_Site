@@ -4,6 +4,7 @@ const ejsMate = require('ejs-mate');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const multer = require('multer');
 const Artpiece = require('./models/artpiece');
 
 mongoose.connect('mongodb://localhost:27017/gallery');
@@ -25,6 +26,17 @@ app.use(express.static(__dirname + '/static'));
 app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
 
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './static/img')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
+
+const upload = multer({ storage: storage });
+
 app.get('/', (req, res) => {
     res.redirect('/gallery');
 })
@@ -43,8 +55,11 @@ app.get('/gallery/:id', async (req, res) => {
     res.render('artpieces/show', { artpiece });
 })
 
-app.post('/gallery', async (req, res) => {
-    const { title, filename, description } = req.body;
+app.post('/gallery', upload.single('filename'), async (req, res) => {
+    const { title, description } = req.body;
+    console.log(req.body);
+    console.log(req.file);
+    const filename = req.file.filename;
     const tags = req.body.tags.split(',');
     const artpiece = new Artpiece({ title, filename, description, tags });
     await artpiece.save();
@@ -57,7 +72,7 @@ app.get('/gallery/:id/edit', async (req, res) => {
     res.render('artpieces/edit', { artpiece, tagsString });
 })
 
-app.put('/gallery/:id', async (req, res) => {
+app.put('/gallery/:id', upload.any(), async (req, res) => {
     const { id } = req.params;
     const { title, filename, description } = req.body;
     const tags = req.body.tags.split(',');
