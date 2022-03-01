@@ -4,7 +4,6 @@
 <a href="/gallery/new">Upload new</a>
 <% for (let artpiece of artpieces) { %>
 <a href="/gallery/<%= artpiece._id %> ">
-    <h2><%= artpiece.title %> </h2>
+    <img src="<%= artpiece.image.thumbnail %> " alt="<%= artpiece.image.filename %>">
 </a>
-<p><%= artpiece.description %> </p>
 <% } %>
