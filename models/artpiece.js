@@ -11,10 +11,19 @@ ImageSchema.virtual('thumbnail').get(function () {
 })
 
 const ArtpieceSchema = new Schema({
-    title: String,
+    title: {
+        type: String,
+        default: 'Untitled'
+    },
     image: ImageSchema,
-    description: String,
-    tags: [String]
+    description: {
+        type: String,
+        default: 'Edit this description...'
+    },
+    tags: {
+        type: [String],
+        default: []
+    }
 })
 
 module.exports = mongoose.model('Artpiece', ArtpieceSchema);

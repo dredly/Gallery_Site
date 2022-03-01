@@ -1,0 +1,9 @@
+<%- layout('layouts/base') %>
+
+<h1>Upload multiple images</h1>
+<h2>And edit the details later</h2>
+<form action="/admin" method="POST" enctype="multipart/form-data">
+    <label for="filenames">Upload images</label>
+    <input type="file" id="filenames" name="filenames" multiple required>
+    <button type="submit">Add all</button>
+</form>

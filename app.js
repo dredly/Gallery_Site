@@ -82,6 +82,25 @@ app.delete('/gallery/:id', async (req, res) => {
     res.redirect('/gallery');
 })
 
+app.get('/admin/multiupload', (req, res) => {
+    res.render('admin/multiupload');
+})
+
+app.post('/admin', upload.array('filenames'), async (req, res) => {
+    console.log(req.files);
+    for (let file of req.files) {
+        // TODO Could probably optimise this to save all at once instead of awaiting each one
+        const artpiece = new Artpiece({
+            title: file.originalname.split('.')[0],
+            image: {
+                url: file.path, filename: file.filename
+            }
+        });
+        await artpiece.save();
+    }
+    res.send('success');
+})
+
 app.listen(3000, '0.0.0.0', () => {
     console.log('Listening on port 3000');
 })
