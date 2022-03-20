@@ -1,16 +1,14 @@
 <%- layout('layouts/base') %>
 
-<h1>Edit this artwork</h1>
-<form action="/gallery/<%= artpiece._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-    <label for="title">Title</label>
-    <input type="text" id="title" name="title" value="<%= artpiece.title %>">
-    <label for="filename">Filename (PLACEHOLDER)</label>
-    <input type="text" id="filename" name="filename" value="<%= artpiece.filename %>">
-    <label for="description">Description</label>
-    <textarea name="description" id="description" cols="30" rows="10"><%= artpiece.description %></textarea>
-    <label for="tags">Tags - please enter separated by commas</label>
-    <input type="text" id="tags" placeholder="mixed media, acrylic, canvas" name="tags" value="<%= tagsString %>">
-    <button type="submit">Add to gallery</button>
-</form>
-<a href="/gallery/<%= artpiece._id %>">Back to artwork</a>
-<a href="/gallery">Back to gallery</a>
+    <h1>Edit this artwork</h1>
+    <form action="/gallery/<%= artpiece._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" value="<%= artpiece.title %>">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"><%= artpiece.description %></textarea>
+        <label for="tags">Tags - please enter separated by commas</label>
+        <input type="text" id="tags" placeholder="mixed media, acrylic, canvas" name="tags" value="<%= tagsString %>">
+        <button type="submit">Save changes</button>
+    </form>
+    <a href="/gallery/<%= artpiece._id %>">Back to artwork</a>
+    <a href="/gallery">Back to gallery</a>

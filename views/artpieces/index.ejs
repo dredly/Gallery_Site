@@ -1,9 +1,12 @@
 <%- layout('layouts/base') %>
 
-<h1>INDEX PAGE</h1>
-<a href="/gallery/new">Upload new</a>
-<% for (let artpiece of artpieces) { %>
-<a href="/gallery/<%= artpiece._id %> ">
-    <img src="<%= artpiece.image.thumbnail %> " alt="<%= artpiece.image.filename %>">
-</a>
-<% } %>
+<main class="container">
+    <p class="mb-4"><a href="/gallery/new">Upload new</a></p>
+    <div id="image-holder">
+        <% for (let artpiece of artpieces) { %>
+        <a href="/gallery/<%= artpiece._id %> ">
+            <img src="<%= artpiece.image.thumbnail %> " alt="<%= artpiece.image.filename %>">
+        </a>
+        <% } %>
+    </div>
+</main>
