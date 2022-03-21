@@ -15,6 +15,7 @@ https://timnwells.medium.com/create-a-simple-responsive-image-gallery-with-html-
     width: 100% !important;
     height: auto !important;
     margin-bottom:5px; /* to match column gap */
+    border-radius: 2px;
  }
 
  @media (max-width: 1200px) {
@@ -47,4 +48,26 @@ https://timnwells.medium.com/create-a-simple-responsive-image-gallery-with-html-
      -webkit-column-count: 1;
      column-count:         1;
     }
+ }
+
+
+
+.container {
+    padding: 5px;
+}
+
+
+
+/* Temorary */
+
+ body {
+     background-color: rgb(8, 24, 19);
+ }
+
+ .navbar {
+    background-color: rgb(11, 48, 36);
+ }
+
+ .navbar-item {
+     color: white;
  }

@@ -1,8 +1,7 @@
 <%- layout('layouts/base') %>
 
     <main class="container">
-        <p class="mb-4"><a href="/gallery/new">Upload new</a></p>
-        <div id="gallery">
+        <div id="gallery" class="mt-5">
             <% for (let artpiece of artpieces) { %>
                 <a href="/gallery/<%= artpiece._id %> ">
                     <img src="<%= artpiece.image.thumbnail %> " alt="<%= artpiece.image.filename %>">
