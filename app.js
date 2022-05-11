@@ -66,6 +66,11 @@ app.get('/gallery/:id/edit', async (req, res) => {
     res.render('artpieces/edit', { artpiece, tagsString });
 })
 
+app.get('/gallery/:id/delete', async (req, res) => {
+    const artpiece = await Artpiece.findById(req.params.id);
+    res.render('artpieces/delete', { artpiece });
+})
+
 app.put('/gallery/:id', upload.any(), async (req, res) => {
     const { id } = req.params;
     const { title, filename, description } = req.body;

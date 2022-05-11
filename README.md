@@ -6,5 +6,5 @@ Trying to make a gallery/art portfolio site using MongoDB, Express and Node
 - [x] Fix edit form
 - [x] Style index page
 - [x] Add ability to delete artpiece
-- [ ] Add delete confirmation
+- [x] Add delete confirmation
 - [ ] Use Sass to style website
