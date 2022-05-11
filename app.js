@@ -9,7 +9,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const multer = require('multer');
-const { storage } = require('./cloudinary');
+const { cloudinary, storage } = require('./cloudinary');
 const upload = multer({ storage });
 const Artpiece = require('./models/artpiece');
 
@@ -78,7 +78,10 @@ app.put('/gallery/:id', upload.any(), async (req, res) => {
 })
 
 app.delete('/gallery/:id', async (req, res) => {
-    await Artpiece.findByIdAndDelete(req.params.id);
+    const artpiece = await Artpiece.findById(req.params.id);
+    await artpiece.delete();
+    await cloudinary.uploader.destroy(artpiece.image.filename);
+    console.log('Destroyed');
     res.redirect('/gallery');
 })
 
