@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css-build": "node-sass --omit-source-map-url sass/custom.scss css/custom.css",
+    "css-build": "node-sass --omit-source-map-url sass/custom.scss static/css/custom.min.css --output-style compressed",
     "css-watch": "npm run css-build -- --watch",
-    "start": "npm run css-watch"
+    "dev": "npm run css-build && nodemon app.js"
   },
   "keywords": [],
   "author": "",
