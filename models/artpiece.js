@@ -10,6 +10,10 @@ ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_300');
 })
 
+ImageSchema.virtual('large').get(function () {
+    return this.url.replace('/upload', '/upload/w_900')
+})
+
 const ArtpieceSchema = new Schema({
     title: {
         type: String,

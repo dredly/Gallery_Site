@@ -1,14 +1,19 @@
 <%- layout('layouts/base') %>
 
-<h1><%= artpiece.title %></h1>
-<img src="<%= artpiece.image.url %>" alt="<%= artpiece.image.filename %>">
-<p><%= artpiece.description %></p>
-<h2>Tags</h2>
-<ul>
-    <% for (let tag of artpiece.tags) { %>
-    <li><%= tag %> </li>
-    <% } %>
-</ul>
-<a href="/gallery/<%= artpiece._id %>/edit">Edit</a>
-<a href="/gallery/<%= artpiece._id %>/delete"><button>Delete</button></a>
-<a href="/gallery">Back to gallery</a>
+<main class="container">
+    <h1 class="has-text-light title is-2"><%= artpiece.title %></h1>
+    <img src="<%= artpiece.image.large %>" alt="<%= artpiece.image.filename %>">
+    <div class="has-text-light">
+        <p><%= artpiece.description %></p>
+        <h2>Tags</h2>
+        <ul>
+            <% for (let tag of artpiece.tags) { %>
+            <li><%= tag %> </li>
+            <% } %>
+        </ul>
+        <a href="/gallery/<%= artpiece._id %>/edit">Edit</a>
+        <a href="/gallery/<%= artpiece._id %>/delete"><button>Delete</button></a>
+        <a href="/gallery">Back to gallery</a>
+    </div>
+</main>
+
