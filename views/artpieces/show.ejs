@@ -1,19 +1,24 @@
 <%- layout('layouts/base') %>
 
-<main class="container">
-    <h1 class="has-text-light title is-2"><%= artpiece.title %></h1>
-    <img src="<%= artpiece.image.large %>" alt="<%= artpiece.image.filename %>">
-    <div class="has-text-light">
-        <p><%= artpiece.description %></p>
-        <h2>Tags</h2>
-        <ul>
+<main class="container has-text-light">
+    <h1 class="has-text-light title is-2 mt-3"><%= artpiece.title %></h1>
+    <section class="is-flex is-flex-wrap-wrap">
+        <img src="<%= artpiece.image.large %>" alt="<%= artpiece.image.filename %>" class="mr-5">
+        <div class="responsive-side-text">
+            <p><%= artpiece.description %></p>
+        </div>
+    </section>
+    <div class="mb-4">
+        <h2 class="has-text-light title is-4 mt-3">Tags</h2>
+        <div class="buttons">
             <% for (let tag of artpiece.tags) { %>
-            <li><%= tag %> </li>
+                <button class="button is-success"><%= tag %></button>
             <% } %>
-        </ul>
-        <a href="/gallery/<%= artpiece._id %>/edit">Edit</a>
-        <a href="/gallery/<%= artpiece._id %>/delete"><button>Delete</button></a>
-        <a href="/gallery">Back to gallery</a>
+        </div>  
+        <h3 class="has-text-light title is-5 mt-3">Admin stuff</h2>
+        <a href="/gallery/<%= artpiece._id %>/edit"><button class="button is-link">Edit</button></a>
+        <a href="/gallery/<%= artpiece._id %>/delete"><button class="button is-danger">Delete</button></a>
+        <a href="/gallery"><button class="button is-link">Back to gallery</button></a>
     </div>
 </main>
 
