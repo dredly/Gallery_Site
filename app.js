@@ -85,6 +85,7 @@ app.put('/gallery/:id', upload.any(), async (req, res) => {
 app.delete('/gallery/:id', async (req, res) => {
     const artpiece = await Artpiece.findById(req.params.id);
     await artpiece.delete();
+    //Also delete the image from cloudinary to free up space
     await cloudinary.uploader.destroy(artpiece.image.filename);
     console.log('Destroyed');
     res.redirect('/gallery');
