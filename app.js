@@ -3,9 +3,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
+const session = require('express-session');
 const path = require('path');
 const ejsMate = require('ejs-mate');
 const morgan = require('morgan');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const multer = require('multer');

@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 const Artpiece = require('../models/artpiece');
+const User = require('../models/user')
 
 mongoose.connect('mongodb://localhost:27017/gallery');
 
@@ -13,6 +16,19 @@ const clearDB = async () => {
     await Artpiece.deleteMany({});
 }
 
-clearDB().then(() => {
-    mongoose.connection.close();
-});
+const createAdmin = async () => {
+    const adminUser = new User({
+        displayName: 'Admin',
+        username: 'admin'
+    })
+    const password = process.env.ADMIN_PASSWORD
+    await User.register(adminUser, password)
+}
+
+// clearDB().then(() => {
+//     mongoose.connection.close();
+// });
+
+createAdmin().then(() => {
+    mongoose.connection.close()
+})
