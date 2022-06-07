@@ -1,0 +1,13 @@
+<%- layout('layouts/base') %>
+
+<main class="container has-text-light">
+	<h1>Login As Admin</h1>
+	<form action="/admin/login" method="POST">
+		<label for="usernameInput">username: </label>
+		<input type="text" id="usernameInput" name="username">
+		<label for="passwordInput">password: </label>
+		<input type="password" id="passwordInput" name="password">
+		<button type="submit">Login</button>
+	</form>
+</main>
+

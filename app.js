@@ -31,10 +31,28 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // Expires in a week
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/static'));
 app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
+app.use(passport.initialize());
+app.use(passport.session()); // Make sure session is used before this
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get('/', (req, res) => {
     res.redirect('/gallery');
@@ -93,6 +111,16 @@ app.delete('/gallery/:id', async (req, res) => {
     await cloudinary.uploader.destroy(artpiece.image.filename);
     console.log('Destroyed');
     res.redirect('/gallery');
+})
+
+app.get('/admin/login', (req, res) => {
+    res.render('admin/login')
+})
+
+app.post('/admin/login', passport.authenticate('local', { failureRedirect: '/admin/login' }), async (req, res) => {
+    console.log('LOGGED IN')
+    console.log(req.body)
+    res.redirect('/gallery/new') // FOR TESTING
 })
 
 app.get('/admin/multiupload', (req, res) => {

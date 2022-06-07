@@ -17,6 +17,7 @@ const clearDB = async () => {
 }
 
 const createAdmin = async () => {
+    await User.deleteMany({});
     const adminUser = new User({
         displayName: 'Admin',
         username: 'admin'
