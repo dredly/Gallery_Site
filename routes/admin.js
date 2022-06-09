@@ -5,8 +5,9 @@ const multer = require('multer')
 const { storage } = require('../cloudinary')
 const upload = multer({ storage })
 const passport = require('passport')
+const { adminRequired } = require('../middleware')
 
-router.get('/', (req, res) => {
+router.get('/', adminRequired, (req, res) => {
 	res.render('admin/index')
 })
 
@@ -18,11 +19,11 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/admin/
 	res.redirect('/admin')
 })
 
-router.get('/multiupload', (req, res) => {
+router.get('/multiupload', adminRequired, (req, res) => {
 	res.render('admin/multiupload')
 })
 
-router.post('/', upload.array('filenames'), async (req, res) => {
+router.post('/', adminRequired, upload.array('filenames'), async (req, res) => {
 	console.log(req.files)
 	for (let file of req.files) {
 		// TODO Could probably optimise this to save all at once instead of awaiting each one
