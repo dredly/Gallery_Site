@@ -10,11 +10,15 @@
     <div id="navmenu" class="navbar-menu has-background-dark">
         <div class="navbar-start">
             <a class="navbar-item has-text-light" href="#">About</a>
-            <a class="navbar-item has-text-light" href="/gallery/new">Upload new</a>
+            <% if (currentUser) { %> 
+                <a class="navbar-item has-text-light" href="/gallery/new">Upload new</a>
+            <% } %> 
         </div>
         <div class="navbar-end">
             <a class="navbar-item has-text-light" href="#">Contact Me</a>
-            <a class="navbar-item has-text-light" href="/admin/logout">Logout</a>
+            <% if (currentUser) { %> 
+                <a class="navbar-item has-text-light" href="/admin/logout">Logout</a>
+            <% } %> 
         </div>
     </div>
 </nav>
