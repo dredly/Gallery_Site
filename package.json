@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "cross-env NODE_ENV=production node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "css-build": "node-sass --omit-source-map-url sass/custom.scss static/css/custom.min.css --output-style compressed",
     "css-watch": "npm run css-build -- --watch",
-    "dev": "npm run css-build && nodemon app.js",
+    "dev": "cross-env NODE_ENV=development npm run css-build && nodemon app.js",
     "seed": "node seeds/index.js",
     "lint": "eslint --fix --ext .js,.jsx ."
   },
@@ -33,6 +34,7 @@
     "passport-local-mongoose": "^7.1.2"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^8.17.0"
   }
 }

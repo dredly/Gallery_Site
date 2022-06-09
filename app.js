@@ -15,8 +15,11 @@ const methodOverride = require('method-override')
 const galleryRoutes = require('./routes/gallery')
 const adminRoutes = require('./routes/admin')
 
-// mongoose.connect('mongodb://localhost:27017/gallery')
-mongoose.connect(process.env.MONGODB_ATLAS_URI)
+const dbUrl = process.env.NODE_ENV === 'production'
+	? process.env.MONGODB_ATLAS_URI
+	: 'mongodb://localhost:27017/gallery'
+
+mongoose.connect(dbUrl)
 
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error'))
