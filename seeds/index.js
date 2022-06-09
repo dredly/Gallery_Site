@@ -1,29 +1,31 @@
-require('dotenv').config();
+require('dotenv').config()
 
-const mongoose = require('mongoose');
-const Artpiece = require('../models/artpiece');
+const mongoose = require('mongoose')
+const Artpiece = require('../models/artpiece')
 const User = require('../models/user')
 
-mongoose.connect('mongodb://localhost:27017/gallery');
+mongoose.connect('mongodb://localhost:27017/gallery')
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, "connection error"));
+const db = mongoose.connection
+db.on('error', console.error.bind(console, 'connection error'))
 db.once('open', () => {
-    console.log('Database connected');
-});
+	console.log('Database connected')
+})
 
 const clearDB = async () => {
-    await Artpiece.deleteMany({});
+	await Artpiece.deleteMany({})
 }
 
+console.log(clearDB) // So Eslint doesn't complain
+
 const createAdmin = async () => {
-    await User.deleteMany({});
-    const adminUser = new User({
-        displayName: 'Admin',
-        username: 'admin'
-    })
-    const password = process.env.ADMIN_PASSWORD
-    await User.register(adminUser, password)
+	await User.deleteMany({})
+	const adminUser = new User({
+		displayName: 'Admin',
+		username: 'admin'
+	})
+	const password = process.env.ADMIN_PASSWORD
+	await User.register(adminUser, password)
 }
 
 // clearDB().then(() => {
@@ -31,5 +33,5 @@ const createAdmin = async () => {
 // });
 
 createAdmin().then(() => {
-    mongoose.connection.close()
+	mongoose.connection.close()
 })

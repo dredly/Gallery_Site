@@ -8,7 +8,8 @@
     "css-build": "node-sass --omit-source-map-url sass/custom.scss static/css/custom.min.css --output-style compressed",
     "css-watch": "npm run css-build -- --watch",
     "dev": "npm run css-build && nodemon app.js",
-    "seed": "node seeds/index.js"
+    "seed": "node seeds/index.js",
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "keywords": [],
   "author": "",
@@ -30,5 +31,8 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.17.0"
   }
 }
