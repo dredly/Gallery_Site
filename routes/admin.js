@@ -38,4 +38,11 @@ router.post('/', adminRequired, upload.array('filenames'), async (req, res) => {
 	res.send('success')
 })
 
+router.get('/logout', (req, res) => {
+	req.logout(() => {
+		console.log('LOGGED OUT')
+		res.redirect('/gallery')
+	})
+})
+
 module.exports = router
