@@ -16,11 +16,13 @@
             <% for (let tag of artpiece.tags) { %>
                 <button class="button is-success"><%= tag %></button>
             <% } %>
-        </div>  
-        <h3 class="has-text-light title is-5 mt-3">Admin stuff</h2>
-        <a href="/gallery/<%= artpiece._id %>/edit"><button class="button is-link">Edit</button></a>
-        <a href="/gallery/<%= artpiece._id %>/delete"><button class="button is-danger">Delete</button></a>
-        <a href="/gallery"><button class="button is-link">Back to gallery</button></a>
+        </div>
+        <% if (currentUser) { %>   
+            <h3 class="has-text-light title is-5 mt-3">Admin stuff</h2>
+            <a href="/gallery/<%= artpiece._id %>/edit"><button class="button is-link">Edit</button></a>
+            <a href="/gallery/<%= artpiece._id %>/delete"><button class="button is-danger">Delete</button></a>
+            <a href="/gallery"><button class="button is-link">Back to gallery</button></a>
+        <% } %> 
     </div>
 </main>
 
