@@ -67,6 +67,10 @@ app.get('/', (req, res) => {
 	res.redirect('/gallery')
 })
 
+app.get('/*/favicon.ico', (req, res) => {
+	res.redirect('/favicon.ico')
+})
+
 app.use('/gallery', galleryRoutes)
 
 app.use('/admin', adminRoutes)
