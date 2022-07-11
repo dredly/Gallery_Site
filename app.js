@@ -47,7 +47,7 @@ app.use(session({
 }))
 
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(path.join(__dirname, '/static')))
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')))
 app.use(methodOverride('_method'))
 app.use(morgan('tiny'))
