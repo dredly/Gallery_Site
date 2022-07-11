@@ -2,6 +2,15 @@
 
     <main class="container has-background-primary">
         <div id="gallery" class="mt-5">
+            <form action="">
+                <label for="tagSelector">Show by tag</label>
+                <select id="tagSelector" name="tag">
+                    <% for (let tag of tags) { %>
+                        <option value="<%= tag %>"><%= tag %></option> 
+                    <% } %>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
             <% for (let artpiece of artpieces) { %>
                 <a href="/gallery/<%= artpiece._id %> ">
                     <img src="<%= artpiece.image.thumbnail %> " alt="<%= artpiece.image.filename %>">

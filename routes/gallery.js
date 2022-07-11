@@ -7,8 +7,13 @@ const upload = multer({ storage })
 const { adminRequired } = require('../middleware')
 
 router.get('/', async (req, res) => {
-	const artpieces = await Artpiece.find({})
-	res.render('artpieces/index', { artpieces })
+	const allArtpieces = await Artpiece.find({})
+	const allTags = [...new Set(allArtpieces.map(a => a.tags).flat())]
+	console.log('allTags', allTags)
+	const artpieces = req.query.tag
+		? allArtpieces.filter(a => a.tags.includes(req.query.tag))
+		: allArtpieces
+	res.render('artpieces/index', { artpieces, tags: allTags })
 })
 
 router.get('/new', adminRequired, (req, res) => {
@@ -23,7 +28,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', adminRequired, upload.single('filename'), async (req, res) => {
 	const { title, description } = req.body
-	const tags = req.body.tags.split(',')
+	const tags = req.body.tags.split(',').map(t => t.trim())
 	const artpiece = new Artpiece({ title, description, tags })
 	artpiece.image = { url: req.file.path, filename: req.file.filename }
 	await artpiece.save()
@@ -44,7 +49,7 @@ router.get('/:id/delete', adminRequired, async (req, res) => {
 router.put('/:id', adminRequired, upload.any(), async (req, res) => {
 	const { id } = req.params
 	const { title, filename, description } = req.body
-	const tags = req.body.tags.split(',')
+	const tags = req.body.tags.split(',').map(t => t.trim())
 	const updatedArtpiece = await Artpiece.findByIdAndUpdate(id, {
 		title, filename, description, tags
 	}, { new: true })
