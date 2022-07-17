@@ -1,8 +1,7 @@
 <%- layout('layouts/base') %>
 
-    <main class="container has-background-primary">
-        <div id="gallery" class="mt-5">
-            <form action="" id="tagForm">
+    <main class="container has-background-primary has-text-light">
+        <form action="" id="tagForm">
                 <label for="tagSelector">Show by tag</label>
                 <select id="tagSelector" name="tag">
                     <option value="">Show all</option>
@@ -14,8 +13,8 @@
                         <% } %> 
                     <% } %>
                 </select>
-                <button type="submit">Submit</button>
             </form>
+        <div id="gallery" class="mt-5">
             <% for (let artpiece of artpieces) { %>
                 <a href="/gallery/<%= artpiece._id %> ">
                     <img src="<%= artpiece.image.thumbnail %> " alt="<%= artpiece.image.filename %>">
