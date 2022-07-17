@@ -2,11 +2,16 @@
 
     <main class="container has-background-primary">
         <div id="gallery" class="mt-5">
-            <form action="">
+            <form action="" id="tagForm">
                 <label for="tagSelector">Show by tag</label>
                 <select id="tagSelector" name="tag">
+                    <option value="">Show all</option>
                     <% for (let tag of tags) { %>
-                        <option value="<%= tag %>"><%= tag %></option> 
+                        <% if (tag === currentTag) { %>
+                            <option value="<%= tag %>" selected><%= tag %></option> 
+                        <% } else { %> 
+                            <option value="<%= tag %>"><%= tag %></option> 
+                        <% } %> 
                     <% } %>
                 </select>
                 <button type="submit">Submit</button>
@@ -18,3 +23,4 @@
                 <% } %>
         </div>
     </main>
+    <script src="/scripts/autoSubmit.js"></script>

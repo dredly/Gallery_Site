@@ -9,11 +9,10 @@ const { adminRequired } = require('../middleware')
 router.get('/', async (req, res) => {
 	const allArtpieces = await Artpiece.find({})
 	const allTags = [...new Set(allArtpieces.map(a => a.tags).flat())]
-	console.log('allTags', allTags)
 	const artpieces = req.query.tag
 		? allArtpieces.filter(a => a.tags.includes(req.query.tag))
 		: allArtpieces
-	res.render('artpieces/index', { artpieces, tags: allTags })
+	res.render('artpieces/index', { artpieces, tags: allTags, currentTag: req.query.tag })
 })
 
 router.get('/new', adminRequired, (req, res) => {
