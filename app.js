@@ -7,6 +7,7 @@ const session = require('express-session')
 const path = require('path')
 const ejsMate = require('ejs-mate')
 const morgan = require('morgan')
+const flash = require('connect-flash')
 const favicon = require('serve-favicon')
 const passport = require('passport')
 const LocalStrategy = require('passport-local')
@@ -51,6 +52,7 @@ app.use(express.static(path.join(__dirname, '/static')))
 app.use(favicon(path.join(__dirname, 'static', 'favicon.ico')))
 app.use(methodOverride('_method'))
 app.use(morgan('tiny'))
+app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session()) // Make sure session is used before this
 
@@ -60,6 +62,8 @@ passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
 	res.locals.currentUser = req.user
+	res.locals.success = req.flash('success')
+	res.locals.error = req.flash('error')
 	next()
 })
 

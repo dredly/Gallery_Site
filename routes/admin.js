@@ -15,7 +15,11 @@ router.get('/login', (req, res) => {
 	res.render('admin/login')
 })
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/admin/login' }), async (req, res) => {
+router.post('/login', passport.authenticate('local', {
+	failureFlash: true,
+	failureRedirect: '/admin/login'
+}), async (req, res) => {
+	req.flash('success', 'Login Successful')
 	res.redirect('/admin')
 })
 
@@ -40,7 +44,7 @@ router.post('/', adminRequired, upload.array('filenames'), async (req, res) => {
 
 router.get('/logout', (req, res) => {
 	req.logout(() => {
-		console.log('LOGGED OUT')
+		req.flash('success', 'Logged out, see you next time!')
 		res.redirect('/gallery')
 	})
 })

@@ -13,9 +13,22 @@
 <body>
     <%- include('../partials/navbar') %>
     <main class="has-background-primary">
+        <% if (success.length) { %> 
+            <div class="notification is-success">
+                <button class="delete"></button>
+                <%= success %>
+            </div>
+        <% } %> 
+        <% if (error.length) { %> 
+            <div class="notification is-danger">
+                <button class="delete"></button>
+                <%= error  %> 
+            </div>
+        <% } %> 
         <%- body %>
     </main>
     <script src="/scripts/navbarBurger.js"></script>
+    <script src="/scripts/closeFlashes.js"></script>
 </body>
 
 </html>

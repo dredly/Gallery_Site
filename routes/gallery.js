@@ -22,6 +22,7 @@ router.get('/new', adminRequired, (req, res) => {
 router.get('/:id', async (req, res) => {
 	const artpiece = await Artpiece.findById(req.params.id)
 	console.log(artpiece)
+	console.log('local locos', res.locals)
 	res.render('artpieces/show', { artpiece })
 })
 
@@ -31,6 +32,7 @@ router.post('/', adminRequired, upload.single('filename'), async (req, res) => {
 	const artpiece = new Artpiece({ title, description, tags })
 	artpiece.image = { url: req.file.path, filename: req.file.filename }
 	await artpiece.save()
+	req.flash('success', 'Upload successful')
 	res.redirect(`/gallery/${artpiece._id}`)
 })
 
