@@ -61,3 +61,8 @@ https://timnwells.medium.com/create-a-simple-responsive-image-gallery-with-html-
 .responsive-side-text {
    width: 400px;
 }
+
+.navbar-item:hover, .navbar-burger:hover {
+   color: white;
+   background-color: rgb(21, 5, 21)!important;
+}
