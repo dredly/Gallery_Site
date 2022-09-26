@@ -1,7 +1,7 @@
 <%- layout('layouts/base') %>
 
-<main class="container has-text-light">
-    <h1 class="has-text-light title is-2 mt-3"><%= artpiece.title %></h1>
+<main class="container">
+    <h1 class="title is-2 mt-3"><%= artpiece.title %></h1>
     <section class="is-flex is-flex-wrap-wrap">
         <a href="<%= artpiece.image.url %>">
             <img src="<%= artpiece.image.large %>" alt="<%= artpiece.image.filename %>" class="mr-5">
@@ -11,14 +11,14 @@
         </div>
     </section>
     <div class="mb-4">
-        <h2 class="has-text-light title is-4 mt-3">Tags</h2>
+        <h2 class="title is-4 mt-3">Tags</h2>
         <div class="buttons">
             <% for (let tag of artpiece.tags) { %>
                 <button class="button is-success"><%= tag %></button>
             <% } %>
         </div>
         <% if (currentUser) { %>   
-            <h3 class="has-text-light title is-5 mt-3">Admin stuff</h2>
+            <h3 class="title is-5 mt-3">Admin stuff</h2>
             <a href="/gallery/<%= artpiece._id %>/edit"><button class="button is-link">Edit</button></a>
             <a href="/gallery/<%= artpiece._id %>/delete"><button class="button is-danger">Delete</button></a>
             <a href="/gallery"><button class="button is-link">Back to gallery</button></a>

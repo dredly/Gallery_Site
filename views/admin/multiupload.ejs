@@ -1,15 +1,15 @@
 <%- layout('layouts/base') %>
 
-<main class="container has-text-light">
-    <h1 class="has-text-light title is-2">Upload multiple images</h1>
-    <h2 class="has-text-light title is-4">And edit the details later</h2>
+<main class="container">
+    <h1 class="title is-2">Upload multiple images</h1>
+    <h2 class="title is-4">And edit the details later</h2>
     <form action="/admin" method="POST" enctype="multipart/form-data">
         <div class="field">
-            <label class="label has-text-light" for="filenames">Upload images</label>
+            <label class="label " for="filenames">Upload images</label>
             <div class="control">
                 <input class="input" type="file" id="filenames" name="filenames" multiple required>
             </div>
         </div>
-        <button class="button is-link" type="submit">Add all</button>
+        <button class="button is-link has-text-light" type="submit">Add all</button>
     </form>
 </main>

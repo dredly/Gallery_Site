@@ -17,9 +17,11 @@ const methodOverride = require('method-override')
 const galleryRoutes = require('./routes/gallery')
 const adminRoutes = require('./routes/admin')
 
-const dbUrl = process.env.NODE_ENV === 'production'
-	? process.env.MONGODB_ATLAS_URI
-	: 'mongodb://localhost:27017/gallery'
+// const dbUrl = process.env.NODE_ENV === 'production'
+// 	? process.env.MONGODB_ATLAS_URI
+// 	: 'mongodb://localhost:27017/gallery'
+
+const dbUrl = process.env.MONGODB_ATLAS_URI
 
 mongoose.connect(dbUrl)
 

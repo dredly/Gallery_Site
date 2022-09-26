@@ -39,7 +39,8 @@ router.post('/', adminRequired, upload.array('filenames'), async (req, res) => {
 		})
 		await artpiece.save()
 	}
-	res.send('success')
+	req.flash('success', `Succesfully uploaded ${req.files.length} images`)
+	res.redirect('/gallery')
 })
 
 router.get('/logout', (req, res) => {

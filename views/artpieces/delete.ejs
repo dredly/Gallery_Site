@@ -1,8 +1,8 @@
 <%- layout('layouts/base') %>
 
-<main class="container has-text-light">
-    <h1 class="has-text-light title is-2">Are you sure you want to permanently delete this image?</h1>
-    <h2 class="has-text-light title is-4">This will also delete associated information, i.e. tags and description</h2>
+<main class="container">
+    <h1 class="title is-2">Are you sure you want to permanently delete this image?</h1>
+    <h2 class="title is-4">This will also delete associated information, i.e. tags and description</h2>
     <form class="mb-4" action="/gallery/<%= artpiece._id %>?_method=DELETE" method="POST">
         <button class="button is-danger" type="submit">Delete</button>
     </form>
