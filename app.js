@@ -16,6 +16,7 @@ const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const galleryRoutes = require('./routes/gallery')
 const adminRoutes = require('./routes/admin')
+const infoRoutes = require('./routes/info')
 
 // const dbUrl = process.env.NODE_ENV === 'production'
 // 	? process.env.MONGODB_ATLAS_URI
@@ -78,8 +79,8 @@ app.get('/*/favicon.ico', (req, res) => {
 })
 
 app.use('/gallery', galleryRoutes)
-
 app.use('/admin', adminRoutes)
+app.use('/', infoRoutes)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {

@@ -1,6 +1,10 @@
 /* CSS taken from tutorial by Tim wells: 
 https://timnwells.medium.com/create-a-simple-responsive-image-gallery-with-html-and-css-fcb973f595ea */
 
+body, body * {
+   font-size: 14pt;
+}
+
 #gallery {
     line-height:0;
    -webkit-column-count:5; /* split it into 5 columns */
