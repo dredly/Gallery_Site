@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Artpiece = require('../models/artpiece')
+const Exhibition = require('../models/exhibition')
 const multer = require('multer')
 const { storage } = require('../cloudinary')
 const upload = multer({ storage })
@@ -25,6 +26,21 @@ router.post('/login', passport.authenticate('local', {
 
 router.get('/multiupload', adminRequired, (req, res) => {
 	res.render('admin/multiupload')
+})
+
+router.get('/exhibitions', adminRequired, (req, res) => {
+	res.render('admin/exhibitions')
+})
+
+router.post('/exhibitions', adminRequired, async (req, res) => {
+	const { description, exhibitionType, startDate, endDate } = req.body
+	const exhibition = new Exhibition({
+		description, startDate, endDate, exhibitionType
+	})
+	await exhibition.save();
+	req.flash('success', 'Successfully added exhibition');
+	// Temporary until exhibition page is added
+	res.redirect('/gallery');
 })
 
 router.post('/', adminRequired, upload.array('filenames'), async (req, res) => {
