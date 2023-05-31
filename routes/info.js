@@ -18,6 +18,7 @@ router.get('/exhibitions', async (req, res) => {
         .sort({ startDate: -1 })
     const exhibitions = allExhibitions
         .map(exh => ({
+            id: exh._id.toString(),
             description: exh.description,
             exhibitionType: exh.exhibitionType,
             startDate: exh.startDate.toLocaleDateString('en-US', dateFmtOptions),

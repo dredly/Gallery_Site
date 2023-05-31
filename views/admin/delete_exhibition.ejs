@@ -1,0 +1,16 @@
+<%- layout('layouts/base') %>
+
+<main class="container">
+    <h1 class="title is-2">Delete an exhibition</h1>
+    <form action="/admin/exhibitions/delete" method="POST" id="deleteExhibitionForm">
+        <div class="field">
+            <label for="exhibitionSelector">Select an exhibition to delete</label>
+            <select id="exhibitionSelector" name="exhibitionId">
+                <% for (let exhibition of exhibitions) { %>
+                    <option value="<%= exhibition.id %>"><%= exhibition.description %></option> 
+                <% } %>
+            </select>
+        </div>
+        <button class="button is-danger" type="submit">Delete this exhibition</button>
+    </form>
+</main>

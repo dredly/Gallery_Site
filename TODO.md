@@ -3,5 +3,5 @@
     - [x] Creation
     - [x] Page to render them
     - [x] Ensure ordered by start date
-    - [ ] Deletion
+    - [x] Deletion
     - [ ] Styling
