@@ -4,4 +4,4 @@
     - [x] Page to render them
     - [x] Ensure ordered by start date
     - [x] Deletion
-    - [ ] Styling
+    - [x] Styling

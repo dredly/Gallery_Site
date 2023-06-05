@@ -2,13 +2,15 @@
 
 <main class="container has-background-light">
     <h1 class="title is-1">My Exhibitions</h1>
-    <table>
-        <% for (let exhibition of exhibitions) { %>
-            <tr>
-                <td><%= exhibition.startDate %> - <%= exhibition.endDate %></td>
-                <td><%= exhibition.description %></td>
-                <td><%= exhibition.exhibitionType %></td>
-            </tr>
-        <% } %>
+    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+        <tbody>
+            <% for (let exhibition of exhibitions) { %>
+                <tr>
+                    <td><%= exhibition.startDate %> - <%= exhibition.endDate %></td>
+                    <td><%= exhibition.exhibitionType %></td>
+                    <td><%= exhibition.description %></td>
+                </tr>
+            <% } %>
+        </tbody>
     </table>
 </main>
