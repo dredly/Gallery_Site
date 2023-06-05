@@ -1,0 +1,32 @@
+<%- layout('layouts/base') %>
+
+<main class="container">
+    <h1 class="title is-2">Add an exhibition</h1>
+    <form method="POST">
+        <div class="field">
+            <label class="label" for="description">Description</label>
+            <div class="control">
+                <input class="input" type="text" id="description" name="description">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="exhibitionType">Exhibition Type</label>
+            <div class="control">
+                <input class="input" type="text" id="exhibitionType" name="exhibitionType" placeholder="e.g. Group exhibition">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="startDate">Start Date</label>
+            <div class="control">
+                <input class="input" type="date" id="startDate" name="startDate">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="endDate">End Date</label>
+            <div class="control">
+                <input class="input" type="date" id="endDate" name="endDate">
+            </div>
+        </div>
+        <button class="button is-link has-text-light" type="submit">Add</button>
+    </form>
+</main>

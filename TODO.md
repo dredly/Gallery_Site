@@ -1,0 +1,7 @@
+- [ ] Exhibitions
+    - [x] Model
+    - [x] Creation
+    - [x] Page to render them
+    - [x] Ensure ordered by start date
+    - [x] Deletion
+    - [x] Styling
